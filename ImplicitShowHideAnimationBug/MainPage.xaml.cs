@@ -59,20 +59,16 @@ namespace ImplicitShowHideAnimationBug
             ElementCompositionPreview.SetImplicitShowAnimation(element, showAnimationGroup);
         }
 
-        private bool _firstTime = true;
         private async void Grid_Loaded(object sender, RoutedEventArgs e)
         {
-            if (!_firstTime)
-            {
-                return;
-            }
-            _firstTime = false;
-
-            await Task.Delay(3000);
-
             var grid = (Grid)sender;
+            grid.Loaded -= Grid_Loaded;
+
             var border = grid.Children.OfType<Border>().First();
             EnableFluidVisibilityAnimation(border);
+
+            // Hide Border element after 2s. You will see only the animations only happen inside the ListBox.
+            await Task.Delay(2000);
             border.Visibility = Visibility.Collapsed;
         }
     }

@@ -25,6 +25,13 @@
     </Page.Resources>
 
     <Grid DataContext="{Binding Source={StaticResource SampleDataSource}}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
         <ListView ItemTemplate="{StaticResource GroupTemplate}" ItemsSource="{Binding Groups}" />
+        <GridView ItemTemplate="{StaticResource GroupTemplate}" ItemsSource="{Binding Groups}" Grid.Column="1" />
+        <ListBox ItemTemplate="{StaticResource GroupTemplate}" ItemsSource="{Binding Groups}" Grid.Column="2" />
     </Grid>
 </Page>
